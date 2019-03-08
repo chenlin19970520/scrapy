@@ -13,8 +13,13 @@ BOT_NAME = 'girl'
 
 SPIDER_MODULES = ['girl.spiders']
 NEWSPIDER_MODULE = 'girl.spiders'
-
-
+IMAGES_STORE = 'D:\m'
+ITEM_PIPELINES={
+    'girl.pipelines.GirlPipeline':300
+}
+DOWNLOADER_MIDDLEWARES={
+    'girl.middlewares.GirlSpiderMiddleware':1,
+}
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'girl (+http://www.yourdomain.com)'
 
