@@ -16,7 +16,9 @@ class girlSpider(scrapy.Spider):
             imgname = img.css("a::attr(title)").extract_first()
             imgurl = img.css("a::attr(href)").extract_first()
             imgurl2= base_url + imgurl
-            #是否有下一页
+            next_url = response.css(".pagelist .page-next::attr(href)").extract_first()
+            if next_url is not None:
+                yield response.follow(next_url,callback=self.parse)
             yield scrapy.Request(imgurl2,callback=self.content)
     def content(self,response):
         item = GirlItem()
